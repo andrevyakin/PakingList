@@ -1,4 +1,8 @@
-﻿using PakingList.Services.Interfaces;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using PakingList.Models;
+using PakingList.Services.Interfaces;
 using PakingList.ViewModels.Base;
 
 namespace PakingList.ViewModels
@@ -28,10 +32,24 @@ namespace PakingList.ViewModels
 
         #endregion
 
+        #region Обработка модели товаров
+
+        public ObservableCollection<Goods> Good { get; }
+
+        #endregion
+
         public MainWindowViewModel(IUserDialog UserDialog, IDataService DataService)
         {
             _UserDialog = UserDialog;
             _DataService = DataService;
+
+            var goods = new List<Goods>().Select(i => new Goods
+            {
+                GoodsDescription = "Описание Товара",
+                GoodsQuantity = 123
+            });
+
+            Good = new ObservableCollection<Goods>(goods);
         }
     }
 }

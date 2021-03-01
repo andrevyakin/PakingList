@@ -25,8 +25,8 @@ namespace PakingList.Models
         public double NetWeightQuantity { get; set; }
 
         /// <summary> Размеры товара (длина, высота, ширина) </summary>
-        public struct Dimensions
-        {
+        //public struct Dimensions
+        //{
             /// <summary> Длина </summary>
             public double Length { get; set; }
 
@@ -36,7 +36,7 @@ namespace PakingList.Models
             /// <summary> Ширина </summary>
             public double Width { get; set; }
 
-        }
+        //}
 
         /// <summary> Объем товара </summary>
         public double GoodsVolume { get; set; }
@@ -51,8 +51,8 @@ namespace PakingList.Models
         int GoodMarking { get; set; }
 
         /// <summary> Количество мест </summary>
-        public struct PlaceQuantity
-        {
+        //public struct PlaceQuantity
+        //{
             /// <summary> Количество грузовых мест товара (при описании товара указывается количество полностью занимаемых товаром мест) </summary>
             public int PlacesQuantity { get; set; }
 
@@ -64,19 +64,19 @@ namespace PakingList.Models
 
             /// <summary> Количество грузовых мест, частично занятых товаром </summary>
             public double PlacesPartQuantity { get; set; }
-        }
+        //}
 
         /// <summary> Сведения об упаковке товара </summary>
-        struct PackingInfo
-        {
+        //struct PackingInfo
+        //{
             /// <summary> Код вида упаковки товаров в соответствии с классификатором видов груза, упаковки и упаковочных материалов. </summary>
-            public int PackingCode { get; set; }
+            //public int PackingCode { get; set; }
 
             /// <summary> Количество упаковок.  </summary>
             public int PakingQuantity { get; set; }
 
             /// <summary> Описание упаковки. </summary>
             public string PackingDescription { get; set; }
-        }
+        //}
     }
 }

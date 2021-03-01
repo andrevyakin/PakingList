@@ -30,7 +30,7 @@
         <TabControl>
             <TabItem Header="Упаковочный лист" />
             <TabItem Header="Шаблон">
-                <DataGrid />
+                <DataGrid  ItemsSource="{Binding Good}" />
             </TabItem>
 
         </TabControl>
