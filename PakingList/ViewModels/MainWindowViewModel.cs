@@ -43,13 +43,16 @@ namespace PakingList.ViewModels
             _UserDialog = UserDialog;
             _DataService = DataService;
 
-            var goods = new List<Goods>().Select(i => new Goods
+            var goods = Enumerable.Range(1, 3).Select(i => new Goods()
             {
-                GoodsDescription = "Описание Товара",
-                GoodsQuantity = 123
+                GoodsDescription = $"Товар {i}",
+                GoodsQuantity = i * 20,
+                PlaceGoodsQuantity = i * 2
             });
 
             Good = new ObservableCollection<Goods>(goods);
+
+
         }
     }
 }

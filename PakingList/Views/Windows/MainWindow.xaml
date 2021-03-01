@@ -28,11 +28,25 @@
             <StatusBarItem Content="{Binding Status}" />
         </StatusBar>
         <TabControl>
-            <TabItem Header="Упаковочный лист" />
-            <TabItem Header="Шаблон">
-                <DataGrid  ItemsSource="{Binding Good}" />
-            </TabItem>
+            <TabItem Header="Упаковочный лист">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Товары">
+                        <ListBox DisplayMemberPath="GoodsDescription" ItemsSource="{Binding Good}" />
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Карточка товара">
+                        <DataGrid>
 
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Шаблон">
+                <DataGrid ItemsSource="{Binding Good}" />
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
