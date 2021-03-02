@@ -4,16 +4,19 @@ using System.Text;
 
 namespace PakingList.Models
 {
-    internal class Goods
+    internal class GoodsList
     {
+        /// <summary> номер товара </summary>
+        public int Number { get; set; }
+
         /// <summary> Описание Товара </summary>
         public string GoodsDescription { get; set; }
 
+        /// <summary> Артикул </summary>
+        public int GoodMarking { get; set; }
+
         /// <summary> Количество товаров </summary>
         public double GoodsQuantity { get; set; }
-
-        /// <summary> Кол-во товара в груз месте </summary>
-        public int PlaceGoodsQuantity { get; set; }
 
         /// <summary> Еденицы измерения (количество) </summary>
         public string MeasureUnitQualifierName { get; set; }
@@ -24,6 +27,23 @@ namespace PakingList.Models
         /// <summary> Вес нетто (кг) </summary>
         public double NetWeightQuantity { get; set; }
 
+        /// <summary> Количество грузовых мест товара (при описании товара указывается количество полностью занимаемых товаром мест) </summary>
+        public int PlacesQuantity { get; set; }
+
+        /// <summary> Описание вида грузовых мест (коробок, упаковок, паллет и т.д.) </summary>
+        public string PlacesDescription { get; set; }
+
+        /// <summary> Код вида упаковки товаров в соответствии с классификатором видов груза, упаковки и упаковочных материалов. </summary>
+        public string PackingCode { get; set; }
+    }
+
+    internal class CardGoods : GoodsList
+    {
+        //public GoodsList ItemListGoods { get; set; }
+
+        /// <summary> Кол-во товара в груз месте </summary>
+        public int PlaceGoodsQuantity { get; set; }
+        
         /// <summary> Размеры товара (длина, высота, ширина) </summary>
         //public struct Dimensions
         //{
@@ -47,20 +67,10 @@ namespace PakingList.Models
         /// <summary> Единица Измерения Код Классификатора </summary>
         public int MeasureUnitQualifierCode { get; set; }
 
-        /// <summary> Артикул </summary>
-        int GoodMarking { get; set; }
-
         /// <summary> Количество мест </summary>
         //public struct PlaceQuantity
         //{
-            /// <summary> Количество грузовых мест товара (при описании товара указывается количество полностью занимаемых товаром мест) </summary>
-            public int PlacesQuantity { get; set; }
-
-            /// <summary> Описание вида грузовых мест (коробок, упаковок, паллет и т.д.) </summary>
-            public string PlacesDescription { get; set; }
-
-            /// <summary> Код вида упаковки товаров в соответствии с классификатором видов груза, упаковки и упаковочных материалов. </summary>
-            public string PackingCode { get; set; }
+           
 
             /// <summary> Количество грузовых мест, частично занятых товаром </summary>
             public double PlacesPartQuantity { get; set; }

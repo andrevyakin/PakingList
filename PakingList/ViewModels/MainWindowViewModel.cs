@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using PakingList.Models;
@@ -34,7 +35,21 @@ namespace PakingList.ViewModels
 
         #region Обработка модели товаров
 
-        public ObservableCollection<Goods> Good { get; }
+        public ObservableCollection<CardGoods> Goods { get; }
+
+        #region SeltctedGoog : CardGoods - Выбранный товар
+
+        /// <summary>Выбранный товар</summary>
+        private CardGoods _SeltctedGoogs;
+
+        /// <summary>Выбранный товар</summary>
+        public CardGoods SeltctedGoog
+        {
+            get => _SeltctedGoogs;
+            set => Set(ref _SeltctedGoogs, value);
+        }
+
+        #endregion
 
         #endregion
 
@@ -43,15 +58,21 @@ namespace PakingList.ViewModels
             _UserDialog = UserDialog;
             _DataService = DataService;
 
-            var goods = Enumerable.Range(1, 3).Select(i => new Goods()
+            var goods = Enumerable.Range(1, 10).Select(i => new CardGoods()
             {
-                GoodsDescription = $"Товар {i}",
-                GoodsQuantity = i * 20,
-                PlaceGoodsQuantity = i * 2
+                
+                    Number = i,
+                    GoodsDescription = $"Товар {i}",
+                    GoodMarking = new Random(100000000).Next(),
+                    GoodsQuantity = i*5.0,
+                    MeasureUnitQualifierName = "шт",
+                    GrossWeightQuantity = 100,
+                    PackingDescription = "Коробка"
+                
             });
 
-            Good = new ObservableCollection<Goods>(goods);
-
+            Goods = new ObservableCollection<CardGoods>(goods);
+            
 
         }
     }

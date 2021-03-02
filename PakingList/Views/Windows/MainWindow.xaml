@@ -3,8 +3,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:g="clr-namespace:PakingList.Models"
     xmlns:l="clr-namespace:PakingList"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     Title="{Binding Title}"
     Width="800"
     Height="450"
@@ -35,17 +37,23 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Товары">
-                        <ListBox DisplayMemberPath="GoodsDescription" ItemsSource="{Binding Good}" />
+                        <!--<ListBox DisplayMemberPath="GoodsDescription" ItemsSource="{Binding Goods}" SelectedItem="{Binding Path=Goods}"/>-->
+                        <ListBox
+                            DisplayMemberPath="Number"
+                            ItemStringFormat="Товар {0}"
+                            ItemsSource="{Binding Goods}"
+                            SelectedItem="{Binding SeltctedGoog}" />
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Header="Карточка товара">
-                        <DataGrid>
-
-                        </DataGrid>
+                    <GroupBox Grid.Column="1">
+                        <GroupBox.Header>
+                            <TextBlock Text="{Binding SeltctedGoog.Number, StringFormat=Товар {0}, FallbackValue='Карточка товаров', TargetNullValue='Товар не выбран'}" />
+                        </GroupBox.Header>
+                        <DataGrid ItemsSource="{Binding Goods}" />
                     </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Шаблон">
-                <DataGrid ItemsSource="{Binding Good}" />
+                <DataGrid ItemsSource="{Binding Goods}" />
             </TabItem>
         </TabControl>
     </DockPanel>
