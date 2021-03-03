@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using PakingList.Models;
+using PakingList.Models.Goods;
 using PakingList.Services.Interfaces;
 using PakingList.ViewModels.Base;
 
@@ -35,18 +36,18 @@ namespace PakingList.ViewModels
 
         #region Обработка модели товаров
 
-        public ObservableCollection<CardGoods> Goods { get; }
+        public ObservableCollection<GoodsNumber> GoodsNumbers { get; }
 
-        #region SeltctedGoog : CardGoods - Выбранный товар
-
-        /// <summary>Выбранный товар</summary>
-        private CardGoods _SeltctedGoogs;
+        #region SeltctedGoods : GoodsNumber - Выбранный товар
 
         /// <summary>Выбранный товар</summary>
-        public CardGoods SeltctedGoog
+        private GoodsNumber _SeltctedGoods;
+
+        /// <summary>Выбранный товар</summary>
+        public GoodsNumber SeltctedGoods
         {
-            get => _SeltctedGoogs;
-            set => Set(ref _SeltctedGoogs, value);
+            get => _SeltctedGoods;
+            set => Set(ref _SeltctedGoods, value);
         }
 
         #endregion
@@ -58,20 +59,26 @@ namespace PakingList.ViewModels
             _UserDialog = UserDialog;
             _DataService = DataService;
 
-            var goods = Enumerable.Range(1, 10).Select(i => new CardGoods()
+
+            int goods_index = 1;
+            var goods = Enumerable.Range(1, 20).Select(i => new CardGoods()
             {
                 
-                    Number = i,
-                    GoodsDescription = $"Товар {i}",
+                    GoodsDescription = $"Товар {goods_index}",
                     GoodMarking = new Random(100000000).Next(),
-                    GoodsQuantity = i*5.0,
+                    GoodsQuantity = goods_index * 5.0,
                     MeasureUnitQualifierName = "шт",
-                    GrossWeightQuantity = 100,
+                    GrossWeightQuantity = goods_index++*100,
                     PackingDescription = "Коробка"
-                
             });
 
-            Goods = new ObservableCollection<CardGoods>(goods);
+            var goodsNumbers = Enumerable.Range(1, 20).Select(i => new GoodsNumber()
+            {
+                Number = i,
+                GoodsNumbers = new ObservableCollection<CardGoods>(goods)
+            });
+
+            GoodsNumbers = new ObservableCollection<GoodsNumber>(goodsNumbers);
             
 
         }

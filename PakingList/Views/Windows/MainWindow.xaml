@@ -41,14 +41,34 @@
                         <ListBox
                             DisplayMemberPath="Number"
                             ItemStringFormat="Товар {0}"
-                            ItemsSource="{Binding Goods}"
-                            SelectedItem="{Binding SeltctedGoog}" />
+                            ItemsSource="{Binding GoodsNumbers}"
+                            SelectedItem="{Binding SeltctedGoods}" />
                     </GroupBox>
                     <GroupBox Grid.Column="1">
                         <GroupBox.Header>
-                            <TextBlock Text="{Binding SeltctedGoog.Number, StringFormat=Товар {0}, FallbackValue='Карточка товаров', TargetNullValue='Товар не выбран'}" />
+                            <TextBlock Text="{Binding SeltctedGoods.Number, StringFormat=Товар {0}, FallbackValue='Карточка товаров', TargetNullValue='Товар не выбран'}" />
                         </GroupBox.Header>
-                        <DataGrid ItemsSource="{Binding Goods}" />
+                        <DataGrid ItemsSource="{Binding SeltctedGoods}">
+                            <DataGrid>
+                                <DataGrid.Resources>
+                                    <DataTemplate DataType="{x:Type g:CardGoods}" />
+                                </DataGrid.Resources>
+                            </DataGrid>
+                            <!--<DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="Auto"
+                                    Binding="{Binding GoodsDescription}"
+                                    Header="Описание товара" />
+                                <DataGridTextColumn
+                                    Width="Auto"
+                                    Binding="{Binding GoodMarking}"
+                                    Header="Артикул" />
+                                <DataGridTextColumn
+                                    Width="Auto"
+                                    Binding="{Binding GoodsQuantity}"
+                                    Header="Кол-во" />
+                            </DataGrid.Columns>-->
+                        </DataGrid>
                     </GroupBox>
                 </Grid>
             </TabItem>
